@@ -1,0 +1,1855 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TwinSentrix — Intelligent Cyber-Physical Systems</title>
+  <meta name="description" content="AI-powered predictive maintenance for industrial manufacturers. Digital Twin simulations for a safer, more efficient factory. No new sensors required.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <!-- GSAP CDN -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+  <style id="INLINE_MAIN_SITE_CSS">
+/* ═══════════════════════════════════════════════════════════
+   TWINSENTRIX — MAIN STYLESHEET
+   Brand: Navy #1B3A6B | Teal #00A8C6 | Background #080D18
+   Fonts: Space Grotesk (headings) + Inter (body)
+   ═══════════════════════════════════════════════════════════ */
+
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg:           #080D18;
+  --bg-2:         #0C1325;
+  --bg-card:      #0F1A2E;
+  --bg-card-h:    #132040;
+  --border:       rgba(0, 168, 198, 0.12);
+  --border-h:     rgba(0, 168, 198, 0.35);
+  --navy:         #1B3A6B; /*secondary color*/
+  --teal:         #00A8C6; /*main accent color*/
+  --teal-l:       #2CC4DF; /*color for hover*/
+  --text:         #E8F4F8;
+  --text-muted:   #5A7A8A;
+  --text-dim:     #304A58;
+
+  --teal-dim:     rgba(0, 168, 198, 0.08); /* not used */
+  --teal-glow:    rgba(0, 168, 198, 0.18); /* not used */
+  --yellow:       #F0B429; /* not used */
+  --red-alert:    #E55353; /* not used */
+
+  --radius:       12px;
+  --radius-lg:    18px;
+  --transition:   0.28s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:root {
+  --bg:           #141319; /* main page background */
+  --bg-2:         #27252f; /* alternate section background */
+
+  --bg-card:      #1a1b1f; /* cards, dark panels, button-like surfaces */
+  --bg-card-h:    #32343a; /* hover background */
+
+  --border:       rgba(228, 235, 243, 0.18); /* based on #e4ebf3 divider/border */
+  --border-h:     rgba(165, 74, 113, 0.75);  /* based on #a54a71 accent border */
+
+  --navy:         #a54a71; /* secondary accent / mauve */
+  --teal:         #791313; /* main accent / dark red-maroon */
+  --teal-l:       #a54a71; /* lighter hover accent */
+
+  --text:         #ede6de; /* main warm off-white text */
+  --text-muted:   #e4ebf3; /* secondary pale text / divider tone */
+  --text-dim:     #a6b1bf; /* very subtle gray-blue text */
+}
+
+
+html { scroll-behavior: smooth; }
+
+body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── TYPOGRAPHY ─── */
+h1, h2, h3, h4 {
+  font-family: 'Space Grotesk', sans-serif;
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+}
+
+.accent-teal { color: var(--teal); }
+
+/* ─── UTILITIES ─── */
+.container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.section { padding: 7rem 0; }
+
+.section-label {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.5rem; /*0.72 */ 
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--teal);
+  text-transform: uppercase;
+  margin-bottom: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.section-label::before {
+  content: '';
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--teal);
+  flex-shrink: 0;
+}
+
+.section-title {
+  font-size: clamp(1.9rem, 3.8vw, 3.2rem);
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 1.4rem;
+}
+
+.section-sub {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  line-height: 1.75;
+  margin-bottom: 4rem;
+}
+
+/* ─── BUTTONS ─── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.78rem 1.75rem;
+  border-radius: 8px;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 600;
+  font-size: 0.92rem;
+  text-decoration: none;
+  transition: all var(--transition);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  letter-spacing: 0.01em;
+}
+
+.btn-primary {
+  background: var(--teal);
+  color: var(--bg);
+}
+.btn-primary:hover {
+  background: var(--teal-l);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 36px color-mix(in srgb, var(--teal) 30%, transparent);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover {
+  border-color: var(--teal);
+  color: var(--teal);
+  transform: translateY(-2px);
+}
+
+.btn-nav {
+  padding: 0.55rem 1.2rem;
+  font-size: 0.85rem;
+  background: var(--teal);
+  color: var(--text);
+  border: 1px solid var(--teal);
+}
+
+.btn-nav:hover {
+  background: var(--teal-l);
+  border-color: var(--teal-l);
+  color: var(--text);
+}
+
+.btn-full {
+  width: 100%;
+  justify-content: center;
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+/* ─── SCROLL ANIMATION BASE STATES ─── */
+.reveal       { opacity: 0; transform: translateY(40px); }
+.reveal-left  { opacity: 0; transform: translateX(-50px); }
+.reveal-right { opacity: 0; transform: translateX(50px); }
+
+
+/* ════════════════════════════════════════════════════════
+   NAVBAR
+════════════════════════════════════════════════════════ */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 900;
+  padding: 1.3rem 0;
+  transition: background var(--transition), padding var(--transition), border-color var(--transition);
+}
+
+.navbar.scrolled {
+  background: color-mix(in srgb, var(--bg) 90%, transparent);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-container {
+  max-width: 1160px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+.nav-logo { display: flex; align-items: center; text-decoration: none; }
+
+.logo-img {
+  height: 64px;
+  width: auto;
+  display: block;
+  border-radius: 6px;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 2.25rem;
+}
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: color var(--transition);
+  letter-spacing: 0.02em;
+}
+.nav-links a:hover,
+.nav-links a.active { color: var(--text); }
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+}
+.hamburger span {
+  display: block;
+  width: 22px;
+  height: 2px;
+  background: var(--text);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Mobile Menu */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 890;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+.mobile-menu.open { display: flex; opacity: 1; }
+
+.mobile-close {
+  position: absolute;
+  top: 1.5rem; right: 2rem;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color var(--transition);
+}
+.mobile-close:hover { color: var(--text); }
+
+.mobile-menu ul { list-style: none; text-align: center; }
+.mobile-menu li { margin-bottom: 1.75rem; }
+.mobile-link {
+  text-decoration: none;
+  color: var(--text);
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  transition: color var(--transition);
+}
+.mobile-link:hover { color: var(--teal); }
+.mobile-link.mobile-cta {
+  color: var(--teal);
+  font-size: 1.25rem;
+  border: 1px solid var(--teal);
+  padding: 0.75rem 2.5rem;
+  border-radius: 8px;
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+
+
+/* ════════════════════════════════════════════════════════
+   HERO
+════════════════════════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 9rem 2rem 6rem;
+}
+
+#heroCanvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-glow {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 900px;
+  height: 600px;
+  background: radial-gradient(
+    ellipse,
+    color-mix(in srgb, var(--teal) 7%, transparent) 0%,
+    transparent 65%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Fade to bg at bottom */
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 220px;
+  background: linear-gradient(transparent, var(--bg));
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  max-width: 860px;
+}
+
+.hero-label {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  color: var(--navy);
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  opacity: 0;
+}
+.hero-label-line {
+  display: block;
+  height: 4px;
+  width: 36px;
+  background: var(--navy);
+  opacity: 0.5;
+}
+
+.hero-title {
+  font-size: clamp(2.75rem, 6.5vw, 5.75rem);
+  font-weight: 700;
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  margin-bottom: 1.75rem;
+}
+.hero-title .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.hero-sub {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  max-width: 560px;
+  margin: 0 auto 2.5rem;
+  line-height: 1.75;
+  opacity: 0;
+  transform: translateY(20px);
+}
+.hero-sub strong { color: var(--text); font-weight: 600; }
+
+.hero-ctas {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  z-index: 2;
+  opacity: 0;
+}
+.hero-scroll-hint span {
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-dim);
+}
+.scroll-line {
+  width: 1px;
+  height: 44px;
+  background: linear-gradient(var(--teal), transparent);
+  animation: scrollPulse 2.2s ease-in-out infinite;
+}
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.25; transform: scaleY(0.4); transform-origin: top; }
+  50%       { opacity: 1;    transform: scaleY(1);   transform-origin: top; }
+}
+
+
+/* ════════════════════════════════════════════════════════
+   PROBLEM
+════════════════════════════════════════════════════════ */
+.problem-section {
+  background: var(--bg-2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 3rem;
+}
+
+.stat-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: border-color var(--transition), transform var(--transition);
+  cursor: default;
+}
+.stat-card:hover {
+  border-color: var(--border-h);
+  transform: translateY(-5px) !important;
+}
+
+.stat-number {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.9rem, 2.8vw, 2.75rem);
+  font-weight: 700;
+  color: var(--teal);
+  line-height: 1;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.03em;
+}
+
+.stat-label {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.problem-gap {
+  background: color-mix(in srgb, var(--teal) 4%, transparent);
+  border: 1px solid color-mix(in srgb, var(--teal) 20%, transparent);
+  border-radius: var(--radius);
+  padding: 1.75rem 2rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.gap-icon {
+  color: var(--teal);
+  flex-shrink: 0;
+  margin-top: 0.1rem;
+}
+.gap-text {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+.gap-text strong { color: var(--text); }
+
+
+/* ════════════════════════════════════════════════════════
+   SOLUTION
+════════════════════════════════════════════════════════ */
+.solution-stack-box {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 3rem;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+
+.solution-step {
+  min-width: 0;
+}
+
+.solution-step:not(:last-child) {
+  border-right: 1px solid var(--border);
+  padding-right: 2.5rem;
+}
+
+.solution-step p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+  line-height: 1.7;
+  margin-bottom: 1.4rem;
+}
+
+@media (max-width: 1024px) {
+  .solution-stack-box {
+    grid-template-columns: 1fr;
+  }
+
+  .solution-step:not(:last-child) {
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    padding-right: 0;
+    padding-bottom: 2.5rem;
+  }
+}
+
+.bg-main {
+  background: var(--bg);
+}
+
+.bg-alt {
+  background: var(--bg-2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.solution-header { margin-bottom: 0; padding-bottom: 2rem; }
+
+.solution-row {
+  padding: 5.5rem 0;
+  border-top: 1px solid var(--border);
+}
+.solution-row.alt { background: var(--bg-2); }
+
+.bg-main .solution-row.alt {
+  background: var(--bg-2);
+}
+
+.bg-alt .solution-row.alt {
+  background: var(--bg);
+}
+
+.solution-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+.solution-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 5.5rem;
+  font-weight: 700;
+  line-height: 1;
+  color: color-mix(in srgb, var(--teal) 50%, transparent);
+  letter-spacing: -0.04em;
+  margin-bottom: -0.6rem;
+  user-select: none;
+}
+
+.solution-title {
+  font-size: clamp(1.65rem, 2.4vw, 2.1rem);
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 1.25rem;
+}
+
+.solution-title1 {
+  font-size: clamp(1.65rem, 2.4vw, 2.1rem);
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 1.25rem;
+}
+.solution-text p {
+  color: var(--text-muted);
+  font-size: 0.98rem;
+  line-height: 1.75;
+  margin-bottom: 1.5rem;
+}
+
+.solution-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+}
+.solution-list li {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  padding-left: 1.3rem;
+  position: relative;
+  line-height: 1.5;
+}
+.solution-list li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--teal);
+  font-size: 0.72rem;
+  top: 0.18em;
+}
+
+.solution-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+/* ── Visual Card (mock UI terminal) ── */
+.visual-card {
+  width: 100%;
+  max-width: 400px;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow:
+    0 24px 60px color-mix(in srgb, var(--bg) 40%, transparent),
+    0 0 0 1px color-mix(in srgb, var(--teal) 6%, transparent);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.visual-card:hover {
+  border-color: color-mix(in srgb, var(--teal) 25%, transparent);
+  box-shadow:
+    0 28px 70px color-mix(in srgb, var(--bg) 50%, transparent),
+    0 0 40px color-mix(in srgb, var(--teal) 6%, transparent);
+}
+
+.vc-top-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.85rem 1.25rem;
+  background: color-mix(in srgb, var(--bg) 30%, transparent);
+  border-bottom: 1px solid var(--border);
+}
+.vc-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.vc-dot.red    { background: #FF5F57; }
+.vc-dot.yellow { background: #FEBC2E; }
+.vc-dot.green  { background: #28C840; }
+.vc-title {
+  font-family: 'Space Grotesk', monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin-left: 0.5rem;
+  letter-spacing: 0.04em;
+}
+
+.vc-body { padding: 1.5rem 1.5rem; }
+
+.vc-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid color-mix(in srgb, var(--text) 4%, transparent);
+  font-size: 0.82rem;
+}
+.vc-row:last-of-type { border-bottom: none; }
+.vc-key { color: var(--text-muted); }
+.vc-val { font-family: 'Space Grotesk', monospace; font-weight: 600; color: var(--text); }
+.vc-val.teal { color: var(--teal); }
+.vc-val.yellow { color: var(--yellow); }
+
+.vc-divider {
+  height: 1px;
+  background: var(--border);
+  margin: 1rem 0;
+}
+
+.vc-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.vc-pulse {
+  width: 7px;
+  height: 7px;
+  background: var(--teal);
+  border-radius: 50%;
+  flex-shrink: 0;
+  animation: pulse 1.8s ease-in-out infinite;
+}
+@keyframes pulse {
+  0%, 100% {
+    box-shadow: 0 0 0 0 color-mix(in srgb, var(--teal) 50%, transparent);
+  }
+  50% {
+    box-shadow: 0 0 0 5px color-mix(in srgb, var(--teal) 0%, transparent);
+  }
+}
+
+/* Progress bar */
+.vc-progress-label { font-size: 0.75rem; color: var(--text-muted); margin-bottom: 0.5rem; }
+.vc-progress-bar {
+  height: 5px;
+  background: color-mix(in srgb, var(--text) 6%, transparent);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 0.35rem;
+}
+.vc-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--teal), var(--teal-l));
+  border-radius: 3px;
+  animation: fillGrow 1.8s ease-out both;
+}
+@keyframes fillGrow {
+  from { width: 0 !important; }
+}
+.vc-progress-val { font-size: 0.75rem; color: var(--teal); font-family: 'Space Grotesk', monospace; }
+
+/* Alert rows */
+.vc-alerts { display: flex; flex-direction: column; gap: 0.6rem; }
+.vc-alert {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.65rem 0.75rem;
+  border-radius: 8px;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+.vc-alert.high {
+  background: color-mix(in srgb, var(--teal) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--teal) 20%, transparent);
+}
+
+.vc-alert.med {
+  background: color-mix(in srgb, var(--navy) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--navy) 20%, transparent);
+}
+
+.vc-alert.low {
+  background: color-mix(in srgb, var(--teal-l) 6%, transparent);
+  border: 1px solid color-mix(in srgb, var(--teal-l) 15%, transparent);
+}
+.vc-alert-badge {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  padding: 0.2rem 0.45rem;
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 0.05rem;
+}
+.vc-alert-badge.high {
+  background: color-mix(in srgb, var(--teal) 20%, transparent);
+  color: var(--teal-l);
+}
+
+.vc-alert-badge.med {
+  background: color-mix(in srgb, var(--navy) 20%, transparent);
+  color: var(--navy);
+}
+
+.vc-alert-badge.low {
+  background: color-mix(in srgb, var(--teal-l) 15%, transparent);
+  color: var(--teal-l);
+}
+.vc-alert-text { color: var(--text-muted); }
+
+
+/* ════════════════════════════════════════════════════════
+   PROJECT
+════════════════════════════════════════════════════════ */
+.project-section {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-2);
+}
+
+.proj-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.proj-stat {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.75rem 1.5rem;
+  text-align: center;
+  transition: border-color var(--transition);
+}
+.proj-stat:hover { border-color: var(--border-h); }
+
+.proj-stat-num {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(1.75rem, 2.5vw, 2.5rem);
+  font-weight: 700;
+  color: var(--teal);
+  line-height: 1;
+  margin-bottom: 0.65rem;
+  letter-spacing: -0.03em;
+}
+
+.proj-stat-label {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.45;
+}
+
+.proj-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.proj-col {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+}
+
+.proj-col-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 1.25rem;
+}
+
+.proj-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.proj-list li {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  padding-left: 1.3rem;
+  position: relative;
+  line-height: 1.6;
+}
+.proj-list li::before {
+  content: '▸';
+  position: absolute;
+  left: 0;
+  color: var(--teal);
+  font-size: 0.72rem;
+  top: 0.18em;
+}
+.proj-list li strong { color: var(--text); }
+
+
+/* ════════════════════════════════════════════════════════
+   WHY TWINSENTRIX
+════════════════════════════════════════════════════════ */
+.why-section { border-top: 1px solid var(--border); }
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.why-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: border-color var(--transition), transform var(--transition), background var(--transition);
+  cursor: default;
+}
+.why-card:hover {
+  border-color: var(--border-h);
+  transform: translateY(-5px) !important;
+  background: var(--bg-card-h);
+}
+
+.why-icon {
+  color: var(--teal);
+  margin-bottom: 1.1rem;
+  display: flex;
+}
+.why-card h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 0.65rem;
+}
+.why-card p {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+
+/* ════════════════════════════════════════════════════════
+   MARKET
+════════════════════════════════════════════════════════ */
+.market-section {
+  background: var(--bg-2);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.market-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+.market-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2rem 1.75rem;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: border-color var(--transition), transform var(--transition);
+  cursor: default;
+}
+.market-card:hover {
+  border-color: var(--border-h);
+  transform: translateY(-5px) !important;
+}
+
+.market-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--teal);
+  letter-spacing: -0.025em;
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+.market-year { font-size: 0.75rem; color: var(--text-dim); margin-bottom: 0.6rem; }
+.market-name { font-weight: 600; color: var(--text); font-size: 0.95rem; margin-bottom: 0.35rem; }
+.market-growth { font-size: 0.8rem; color: var(--text-muted); }
+
+.market-beachhead {
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--teal) 7%, transparent) 0%,
+    color-mix(in srgb, var(--navy) 8%, transparent) 100%
+  );
+  border: 1px solid color-mix(in srgb, var(--teal) 22%, transparent);
+  border-radius: var(--radius-lg);
+  padding: 3rem;
+}
+
+.beachhead-inner {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 4rem;
+  align-items: center;
+}
+
+.beachhead-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: var(--teal);
+  text-transform: uppercase;
+  margin-bottom: 0.75rem;
+}
+
+.beachhead-value {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: clamp(2.5rem, 4.5vw, 4.25rem);
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.03em;
+  line-height: 1;
+  margin-bottom: 0.9rem;
+}
+
+.beachhead-desc {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  max-width: 440px;
+}
+
+.beachhead-milestones {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  min-width: 200px;
+}
+
+.milestone {
+  padding: 1rem 1.25rem;
+  background: color-mix(in srgb, var(--bg) 25%, transparent);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.milestone-year {
+  font-size: 0.7rem;
+  color: var(--text-dim);
+  letter-spacing: 0.06em;
+  margin-bottom: 0.2rem;
+}
+.milestone-val {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--teal);
+  margin-bottom: 0.15rem;
+}
+.milestone-desc { font-size: 0.78rem; color: var(--text-muted); }
+
+
+/* ════════════════════════════════════════════════════════
+   TEAM
+════════════════════════════════════════════════════════ */
+.team-section { border-top: 1px solid var(--border); }
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.team-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: border-color var(--transition), transform var(--transition);
+  cursor: default;
+}
+.team-card:hover {
+  border-color: var(--border-h);
+  transform: translateY(-6px) !important;
+}
+
+.team-avatar {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, var(--navy), var(--teal));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--text);
+  margin: 0 auto 1.25rem;
+  box-shadow: 0 8px 24px color-mix(in srgb, var(--teal) 20%, transparent);
+}
+
+.team-name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.3rem;
+}
+.team-role {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 0.75rem;
+}
+.team-bio {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin-bottom: 1.25rem;
+}
+.team-links {
+  display: flex;
+  gap: 0.6rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.team-link {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-decoration: none;
+  padding: 0.3rem 0.85rem;
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  transition: all var(--transition);
+}
+.team-link:hover {
+  color: var(--teal);
+  border-color: var(--teal);
+}
+
+
+/* ════════════════════════════════════════════════════════
+   CONTACT
+════════════════════════════════════════════════════════ */
+.contact-section {
+  border-top: 1px solid var(--border);
+  background: var(--bg-2);
+}
+
+.contact-box {
+  max-width: 660px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.contact-title {
+  font-size: clamp(1.9rem, 3.5vw, 3rem);
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 1rem;
+}
+.contact-sub {
+  font-size: 1rem;
+  color: var(--text-muted);
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  text-align: left;
+}
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.85rem;
+}
+.form-input {
+  width: 100%;
+  padding: 0.875rem 1.15rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  resize: none;
+}
+.form-input::placeholder { color: var(--text-muted); }
+.form-input:focus {
+  border-color: color-mix(in srgb, var(--teal) 50%, transparent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--teal) 9%, transparent);
+}
+.form-textarea { min-height: 110px; }
+
+
+/* ════════════════════════════════════════════════════════
+   FOOTER
+════════════════════════════════════════════════════════ */
+.footer {
+  background: #050810;
+  border-top: 1px solid var(--border);
+  padding-top: 4.5rem;
+}
+
+.footer-inner {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 5rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.footer-logo {
+  height: 130px;
+  width: auto;
+  display: block;
+  margin-bottom: 1.5rem;
+  border-radius: 8px;
+}
+.footer-brand p {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+.footer-social {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 1.25rem;
+}
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-muted);
+  transition: all var(--transition);
+}
+.social-link:hover {
+  color: var(--teal);
+  border-color: var(--teal);
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+}
+.footer-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+.footer-col-title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--text);
+  margin-bottom: 0.25rem;
+}
+.footer-col a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 0.875rem;
+  transition: color var(--transition);
+}
+.footer-col a:hover { color: var(--teal); }
+
+.footer-bottom { padding: 1.4rem 0; }
+.footer-bottom-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+
+
+/* ════════════════════════════════════════════════════════
+   RESPONSIVE
+════════════════════════════════════════════════════════ */
+@media (max-width: 1024px) {
+  .stats-grid     { grid-template-columns: repeat(2, 1fr); }
+  .proj-stats     { grid-template-columns: repeat(2, 1fr); }
+  .solution-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .solution-row.alt .solution-text   { order: 1; }
+  .solution-row.alt .solution-visual { order: 2; }
+  .why-grid       { grid-template-columns: repeat(2, 1fr); }
+  .market-grid    { grid-template-columns: repeat(2, 1fr); }
+  .team-grid      { grid-template-columns: repeat(2, 1fr); }
+  .beachhead-inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .beachhead-milestones { flex-direction: row; }
+  .footer-inner   { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+
+@media (max-width: 768px) {
+  .nav-links, .btn-nav { display: none; }
+  .hamburger { display: flex; }
+  .solution-num { font-size: 4rem; }
+  .why-grid    { grid-template-columns: 1fr; }
+  .proj-body   { grid-template-columns: 1fr; }
+  .market-grid { grid-template-columns: 1fr; }
+  .team-grid   { grid-template-columns: 1fr; max-width: 380px; margin: 0 auto; }
+  .form-row    { grid-template-columns: 1fr; }
+  .footer-bottom-inner { flex-direction: column; gap: 0.4rem; text-align: center; }
+  .section { padding: 5rem 0; }
+  .solution-row { padding: 4rem 0; }
+  .beachhead-milestones { flex-direction: column; }
+}
+
+@media (max-width: 540px) {
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+  .hero-ctas { flex-direction: column; align-items: center; }
+  .hero-ctas .btn { width: 100%; max-width: 300px; justify-content: center; }
+  .beachhead-inner { padding: 0; }
+  .market-beachhead { padding: 2rem; }
+}
+
+/* Packaging 3D Demo */
+.packaging-demo-section {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      color-mix(in srgb, var(--teal) 12%, transparent),
+      transparent 34%
+    ),
+    var(--bg);
+}
+
+.packaging-demo-frame {
+  margin-top: 3rem;
+  width: 100%;
+  height: min(760px, 82vh);
+  border: 1px solid color-mix(in srgb, var(--teal) 25%, transparent);
+  border-radius: 28px;
+  overflow: hidden;
+  background: var(--bg-card);
+  box-shadow: 0 30px 90px color-mix(in srgb, var(--bg) 45%, transparent);
+}
+
+.packaging-demo-frame iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .packaging-demo-frame {
+    height: 620px;
+    border-radius: 20px;
+  }
+}
+  </style>
+
+</head>
+<body>
+
+  <!-- ══════════════════════════════════════════════════════
+       NAVBAR
+  ══════════════════════════════════════════════════════ -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-logo">
+        <img src="twinsentrix-logo.png" alt="TwinSentrix" class="logo-img">
+      </a>
+      <ul class="nav-links">
+        <li><a href="#problem">Problem</a></li>
+        <li><a href="#solution">Solution</a></li>
+        <li><a href="#why">Why Us</a></li>
+        <li><a href="#project">Work</a></li>
+        <li><a href="#packaging-demo">Demo</a></li>
+        <li><a href="#team">Team</a></li>
+      </ul>
+      <a href="#contact" class="btn btn-nav">CONTACT US</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu" id="mobileMenu">
+    <button class="mobile-close" id="mobileClose" aria-label="Close menu">✕</button>
+    <ul>
+      <li><a href="#problem" class="mobile-link">Problem</a></li>
+      <li><a href="#solution" class="mobile-link">Solution</a></li>
+      <li><a href="#why" class="mobile-link">Why Us</a></li>
+      <li><a href="#project" class="mobile-link">Work</a></li>
+      <li><a href="#packaging-demo" class="mobile-link">Demo</a></li>
+      <li><a href="#team" class="mobile-link">Team</a></li>
+      <li><a href="#contact" class="mobile-link mobile-cta">CONTACT US</a></li>
+    </ul>
+  </div>
+
+  <!-- ══════════════════════════════════════════════════════
+       HERO
+  ══════════════════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <canvas id="heroCanvas"></canvas>
+    <div class="hero-glow"></div>
+
+    <div class="hero-content">
+      <div class="hero-label">
+        <span class="hero-label-line"></span>
+        Intelligent Cyber-Physical Systems
+        <span class="hero-label-line"></span>
+      </div>
+
+      <h1 class="hero-title">
+        <span class="word">Predict Failures</span><br>
+        <span class="word accent-teal">Before They Happen</span>
+      </h1>
+
+      <p class="hero-sub">
+        AI-powered predictive maintenance for manufacturing plants —
+        powered by digital twin simulation and physics-informed AI.<br>
+        <strong>No new sensors. No cold-start. No downtime.</strong>
+      </p>
+
+      <div class="hero-ctas">
+        <a href="#packaging-demo" class="btn btn-primary">See Our Live Demo!</a>
+        <a href="#solution" class="btn btn-ghost">See How It Works ↓</a>
+      </div>
+    </div>
+
+    <div class="hero-scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       PROBLEM
+  ══════════════════════════════════════════════════════ -->
+  <section class="section problem-section" id="problem">
+    <div class="container">
+      <div class="section-label reveal">THE $1.4 TRILLION PROBLEM</div>
+      <h2 class="section-title reveal">
+        Industrial Downtime Is<br>Destroying Your Bottom Line
+      </h2>
+      <p class="section-sub reveal">
+        Equipment failure is the single largest contributor to unplanned downtime worldwide.
+        Despite decades of progress, most manufacturers still operate on reactive or scheduled
+        preventive maintenance — not true predictive maintenance.
+      </p>
+      <p class="section-sub reveal">
+        <strong>Over 60% of mid-market manufacturers lack sufficient historical 
+        failure data to train AI models. Existing solutions require $500K–$5M in IoT sensor
+        infrastructure before any AI value is realized — locking out the mid-market entirely.</strong>
+      </p>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-number" data-target="1.4" data-suffix="T" data-prefix="$">$0T</div>
+          <div class="stat-label">Annual cost to Fortune Global 500 companies</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-target="260" data-suffix="K" data-prefix="$">$0K</div>
+          <div class="stat-label">Average hourly cost per manufacturing facility</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-target="800" data-suffix=" hrs">0 hrs</div>
+          <div class="stat-label">Average downtime per manufacturer per year</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number" data-target="11" data-suffix="%">0%</div>
+          <div class="stat-label">Share of total revenue lost to unplanned stops</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- ══════════════════════════════════════════════════════
+       SOLUTION part 1
+  ══════════════════════════════════════════════════════ -->
+  <section class="section solution-section bg-main" id="solution">
+    <div class="container solution-header">
+      <div class="section-label reveal">OUR SOLUTION</div>
+      <h2 class="section-title reveal">
+        Built Different<br>From the Ground Up
+      </h2>
+
+      <p class="section-sub reveal">
+        TwinSentrix is an intelligent cyber-physical decision-support system for factories and process plants.
+        Instead of starting with expensive new sensors, we start with simulation: 
+        a plant-specific digital twin built from existing diagrams, equipment specs, process logic, 
+        and known failure modes.
+      </p>
+      <p class="section-sub reveal">
+        <strong>This simulation-first approach helps manufacturers understand bottlenecks, downtime risk, equipment degradation, and future 
+          production states before committing to costly hardware deployments.</strong>
+      </p>
+    </div>
+  </section>
+
+<section class="section solution-section bg-alt" id="solution1">
+  <div class="container solution-header">
+    <div class="section-label reveal">THREE LAYERS OF INTELLIGENT OPERATIONS</div>
+    <h2 class="section-title reveal">
+      Simulation &amp; Prediction<br>&amp; Action
+    </h2>
+  </div>
+
+  <div class="container">
+    <div class="solution-stack-box reveal">
+
+      <!-- 01 Digital Twin -->
+      <div class="solution-step">
+        <div class="solution-num">01</div>
+        <h3 class="solution-title">Digital Twin<br>Simulation</h3>
+        <p>
+          We build a plant-specific digital twin to bypass the historical data gap.
+          The model reflects real equipment, process flow, operating limits, queues,
+          downtime behavior, and failure modes.
+        </p>
+      
+      </div>
+
+      <!-- 02 Temporal AI -->
+      <div class="solution-step">
+        <div class="solution-num">02</div>
+        <h3 class="solution-title">Failure<br>Risk Forcasting</h3>
+        <p>
+          We give manufacturers earlier visibility into future downtime risk by learning from realistic simulated production histories. The system forecasts where equipment degradation, bottlenecks, or instability are likely to build before they interrupt production.
+        </p>
+      </div>
+
+      <!-- 03 AI Agent -->
+      <div class="solution-step">
+        <div class="solution-num">03</div>
+        <h3 class="solution-title">Operational<br>Decision Support</h3>
+        <p>
+          Our AI agent to turn complex plant signals into clear operational guidance. So operators, managers, and engineering teams understand what risk is building, why it matters, and what decision should be considered next.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+    <!-- ══════════════════════════════════════════════════════
+       WHY TWINSENTRIX
+  ══════════════════════════════════════════════════════ -->
+  <section class="section why-section" id="why">
+    <div class="container">
+      <div class="section-label reveal">WHY TWINSENTRIX</div>
+      <h2 class="section-title reveal">Built Different<br>From the Ground Up</h2>
+
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/>
+            </svg>
+          </div>
+          <h4>Simulation-First</h4>
+          <p>No IoT hardware required. Bypass the $500K–$5M sensor infrastructure cost that blocks every other solution from reaching the mid-market.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+          </div>
+          <h4>No Cold-Start Problem</h4>
+          <p>Synthetic training data generated from physics-accurate simulation means AI value from day one — not after years of manual data labeling.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M9 3H5a2 2 0 0 0-2 2v4m6-6h10a2 2 0 0 1 2 2v4M9 3v18m0 0h10a2 2 0 0 0 2-2v-4M9 21H5a2 2 0 0 1-2-2v-4m0 0h18"/>
+            </svg>
+          </div>
+          <h4>Physics-Informed Decisions</h4>
+          <p>Our AI Agent reasons over physical constraints, not just statistical patterns — delivering explainable, trustworthy alerts operators actually act on.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+            </svg>
+          </div>
+          <h4>Mid-Market Focus</h4>
+          <p>Designed for chemical process plants and discrete manufacturers ($100M–$2B revenue) — the segment abandoned by Siemens, GE, and IBM.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+          </div>
+          <h4>Fast Deployment</h4>
+          <p>Plant-specific digital twins built from your existing P&amp;ID diagrams and equipment specs. Operational in weeks, not the months that incumbents require.</p>
+        </div>
+        <div class="why-card">
+          <div class="why-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            </svg>
+          </div>
+          <h4>High Switching Costs</h4>
+          <p>Proprietary plant-specific models take 6+ months to replicate with any competitor — creating a durable moat and strong customer retention.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <!-- PROJECT
+  ══════════════════════════════════════════════════════ -->
+  <section class="section project-section" id="project">
+    <div class="container">
+      <div class="section-label reveal">EXPLORE OUR WORK</div>
+      <h2 class="section-title reveal">Starting with<br>Packaging Lines</h2>
+      <p class="section-sub reveal">
+        Packaging and bottling lines are the final — and most failure-prone — stage of nearly every
+        manufacturing process. A single breakdown cascades backwards and halts the entire upstream plant.
+        We are starting here because the problem is massive, the failure modes are simulatable, and our
+        simulation-first approach eliminates the need for years of historical sensor data.
+      </p>
+
+      <div class="proj-stats reveal">
+        <div class="proj-stat">
+          <div class="proj-stat-num">30%</div>
+          <div class="proj-stat-label">of all manufacturing downtime caused by packaging equipment failures</div>
+        </div>
+        <div class="proj-stat">
+          <div class="proj-stat-num">47</div>
+          <div class="proj-stat-label">average unplanned stops per week on a typical packaging line</div>
+        </div>
+        <div class="proj-stat">
+          <div class="proj-stat-num">62%</div>
+          <div class="proj-stat-label">average OEE on packaging lines vs 82–85% world-class benchmark</div>
+        </div>
+        <div class="proj-stat">
+          <div class="proj-stat-num">$20M+</div>
+          <div class="proj-stat-label">recoverable annual production per plant by closing half the OEE gap</div>
+        </div>
+      </div>
+
+      <div class="proj-body">
+        <div class="proj-col reveal-left">
+          <div class="proj-col-title">Failure Modes We Target</div>
+          <ul class="proj-list">
+            <li><strong>Conveyor jams</strong> — responsible for 78% of all conveyor stoppages; micro-stops under 5 min consume up to 25% of available shift time</li>
+            <li><strong>Filler head failures</strong> — nozzle clogging and seal wear; food &amp; beverage fillers achieve only 29% median uptime, creating a 2.4× synchronization gap with downstream packagers</li>
+            <li><strong>Capper misalignment &amp; chuck wear</strong> — under-torqued caps cause product leaks; over-torqued caps crack; worn crown capper bells cause carbonation loss</li>
+            <li><strong>Sealer jaw drift</strong> — temperature drift produces weak seals; uncalibrated sensors silently reduce throughput by 10–15%</li>
+          </ul>
+        </div>
+        <div class="proj-col reveal-right">
+          <div class="proj-col-title">How TwinSentrix Solves It</div>
+          <ul class="proj-list">
+            <li><strong>Digital twin</strong> of the packaging line — conveyor, filler, capper, sealer — built from existing machine specs, no new hardware required</li>
+            <li><strong>Synthetic failure data</strong> generated by injecting bearing wear, jam probability, and cycle time drift into the physics-accurate simulation</li>
+            <li><strong>LSTM model</strong> trained on simulation data predicts failures 2+ weeks ahead — no years of historical sensor data needed to start</li>
+            <li><strong>AI Agent alerts</strong> operators in plain language: "Conveyor C-02 bearing wear detected — failure likely within 8 days"</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section packaging-demo-section" id="packaging-demo">
+    <div class="container">
+      <div class="section-label reveal">LIVE DIGITAL TWIN DEMO</div>
+      <h2 class="section-title reveal">
+        Packaging Line Simulation<br>in 3D
+      </h2>
+      <p class="section-sub reveal">
+        Follow the production line from Feeder to Wrapper and see how TwinSentrix turns
+        station-level signals into early maintenance warnings.
+      </p>
+
+      <div class="packaging-demo-frame reveal">
+        <iframe
+          src="packaging-3d/index.html"
+          title="TwinSentrix 3D packaging line demo"
+          loading="lazy"
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       TEAM
+  ══════════════════════════════════════════════════════ -->
+  <section class="section team-section" id="team">
+    <div class="container">
+      <div class="section-label reveal">THE TEAM</div>
+      <h2 class="section-title reveal">Cross-Disciplinary<br>Mission-Focused</h2>
+      <p class="section-sub reveal">
+        A Texas A&amp;M student team bringing together engineering research, simulation modelings,
+  and industrial systems knowledge to build practical AI tools for safer, smarter factory operations.
+      </p>
+
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">RT</div>
+          <h4 class="team-name">Rohan Thakur</h4>
+          <div class="team-role">Business strategy and technical development</div>
+          <p class="team-bio">Texas A&amp;M University</p>
+          <div class="team-links">
+            <a href="https://www.linkedin.com/in/rohan-thakur14/" target="_blank" rel="noopener" class="team-link">LinkedIn</a>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-avatar">DY</div>
+          <h4 class="team-name">Daniel Yu</h4>
+          <div class="team-role">Technical development and business outreach</div>
+          <p class="team-bio">Texas A&amp;M University</p>
+          <div class="team-links">
+            <a href="https://www.linkedin.com/in/danielyu233" target="_blank" rel="noopener" class="team-link">LinkedIn</a>
+          </div>
+        </div>
+
+        <div class="team-card">
+          <div class="team-avatar">TZ</div>
+          <h4 class="team-name">TianTian Zhu</h4>
+          <div class="team-role">Product Engineering and Solution Architect</div>
+          <p class="team-bio">Texas A&amp;M University</p>
+          <div class="team-links">
+            <a href="https://www.linkedin.com/in/tiantian-zhu-bbb09b383" class="team-link">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       CONTACT
+  ══════════════════════════════════════════════════════ -->
+  <section class="section contact-section" id="contact">
+    <div class="container">
+      <div class="contact-box reveal">
+        <div class="section-label" style="justify-content:center;">GET EARLY ACCESS</div>
+        <h2 class="contact-title">Ready to eliminate<br>unplanned downtime?</h2>
+        <p class="contact-sub">
+          We're onboarding our first pilot plants for 2026. Join the waitlist and get
+          early access to TwinSentrix.
+        </p>
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="form-row">
+            <input type="text" placeholder="Your Name" class="form-input" required autocomplete="name">
+            <input type="email" placeholder="Work Email" class="form-input" required autocomplete="email">
+          </div>
+          <input type="text" placeholder="Company / Plant Name" class="form-input" required autocomplete="organization">
+          <textarea
+            placeholder="Tell us about your facility and maintenance challenges..."
+            class="form-input form-textarea"
+            rows="4"
+          ></textarea>
+          <button type="submit" class="btn btn-primary btn-full">
+            Request Early Access →
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════
+       FOOTER
+  ══════════════════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container footer-inner">
+      <div class="footer-brand">
+        <img src="twinsentrix-logo.png" alt="TwinSentrix" class="footer-logo">
+
+      </div>
+
+      <div class="footer-links">
+        <div class="footer-col">
+          <div class="footer-col-title">Product</div>
+          <a href="#problem">The Problem</a>
+          <a href="#solution">Our Solution</a>
+          <a href="#why">Why TwinSentrix</a>
+        </div>
+        <div class="footer-col">
+          <div class="footer-col-title">Company</div>
+          <a href="#team">Team</a>
+          <a href="#contact">Contact</a>
+          <a href="mailto:contact@twinsentrix.com">contact@twinsentrix.com</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <span>© 2026 TwinSentrix. All rights reserved.</span>
+        <span>Texas A&amp;M University</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
