@@ -736,7 +736,18 @@ def main() -> None:
         st.markdown("## TwinSentrix")
         st.caption("DATA & MODEL CONTROLS")
         data_file = st.selectbox("Prediction File", data_files, format_func=lambda p: p.name)
-        model = st.selectbox("LLM Model", ["llama3.1:8b", "mistral:7b", "qwen2.5:7b"])
+        OLLAMA_CLOUD_MODELS = [
+            "gpt-oss:20b",
+            "gpt-oss:120b",
+            "qwen3-coder-next:cloud",
+        ]
+
+        model = st.selectbox(
+            "Agent Reasoning Model",
+            OLLAMA_CLOUD_MODELS,
+            index=0,
+        )
+        
         use_llm = st.toggle("Use LLM reasoning", value=False)
         if st.button("Reload Knowledge Base", use_container_width=True):
             st.session_state.kb_reload_token += 1

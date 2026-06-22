@@ -194,25 +194,72 @@ def ask_ollama(
     flags: list[dict],
     contexts: list[dict],
     question: str,
-    model: str = "llama3.1:8b",
-    host: str = "http://localhost:11434",
+    model: str = "gpt-oss:20b",
+    host: str = "https://ollama.com",
     timeout: int = 45,
 ) -> tuple[str, bool]:
+    """
+    Ollama Cloud reasoning for the deployed Render demo.
+
+    Uses:
+      OLLAMA_API_BASE=https://ollama.com
+      OLLAMA_API_KEY=your_key
+      OLLAMA_MODEL optional override
+
+    Falls back safely to deterministic reasoning if the API fails.
+    """
+
+    import os
+
+    api_base = os.environ.get("OLLAMA_API_BASE", host).rstrip("/")
+    api_key = os.environ.get("OLLAMA_API_KEY")
+    selected_model = os.environ.get("OLLAMA_MODEL", model)
+
+    if not api_key:
+        return fallback_answer(record, flags, contexts, question), False
+
+    prompt = build_prompt(record, flags, contexts, question)
+
     payload = {
-        "model": model,
-        "prompt": build_prompt(record, flags, contexts, question),
+        "model": selected_model,
+        "messages": [
+            {
+                "role": "system",
+                "content": SYSTEM_PROMPT,
+            },
+            {
+                "role": "user",
+                "content": prompt,
+            },
+        ],
         "stream": False,
-        "options": {"temperature": 0.2},
+        "options": {
+            "temperature": 0.2,
+        },
     }
+
     request = urllib.request.Request(
-        f"{host.rstrip('/')}/api/generate",
+        f"{api_base}/api/chat",
         data=json.dumps(payload).encode("utf-8"),
-        headers={"Content-Type": "application/json"},
+        headers={
+            "Content-Type": "application/json",
+            "Authorization": f"Bearer {api_key}",
+        },
         method="POST",
     )
+
     try:
         with urllib.request.urlopen(request, timeout=timeout) as response:
             data = json.loads(response.read().decode("utf-8"))
-            return data.get("response", "").strip() or fallback_answer(record, flags, contexts, question), True
-    except (urllib.error.URLError, TimeoutError, json.JSONDecodeError, OSError):
-        return fallback_answer(record, flags, contexts, question), False
+            answer = (
+                data.get("message", {})
+                .get("content", "")
+                .strip()
+            )
+            if answer:
+                return answer, True
+
+    except (urllib.error.URLError, TimeoutError, json.JSONDecodeError, OSError, KeyError):
+        pass
+
+    return fallback_answer(record, flags, contexts, question), False
